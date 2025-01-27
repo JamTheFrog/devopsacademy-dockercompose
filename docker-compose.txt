@@ -1,0 +1,32 @@
+#docker compose with dockerhub images
+
+version: "3.8"
+services:
+  webserver1:
+    image: farissrnja/webserver1:latest
+    ports:
+      - "8080:8080"
+
+  webserver2:
+    image: farissrnja/webserver2:latest
+    ports:
+      - "9200:9200"
+
+  reverse-proxy:
+    image: farissrnja/reverse-proxy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - webserver1
+      - webserver2
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    volumes:
+      - redis-data:/data  
+    restart: always  
+    
+volumes:
+  redis-data:
