@@ -1,0 +1,3 @@
+node_modules
+reverse-proxy/certs/*.key
+reverse-proxy/certs/*.crt

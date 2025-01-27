@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  webserver1:
+    build:
+      context: ./webserver1
+    ports:
+      - "8080:8080"
+
+  webserver2:
+    build:
+      context: ./webserver2
+    ports:
+      - "9200:9200"
+
+
+  reverse-proxy:
+    build:
+      context: ./reverse-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - webserver1
+      - webserver2
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    volumes:
+      - redis-data:/data  
+    restart: always  
+    
+volumes:
+  redis-data:
+
+  
