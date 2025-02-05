@@ -4,13 +4,13 @@ services:
     build:
       context: ./webserver1
     ports:
-      - "8080:8080"
+      - "8080"
 
   webserver2:
     build:
       context: ./webserver2
     ports:
-      - "9200:9200"
+      - "9200"
 
 
   reverse-proxy:
